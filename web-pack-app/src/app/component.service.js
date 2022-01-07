@@ -12,7 +12,7 @@ export class ComponentService {
     }
 
     setResult(str) {
-        this.resultsDiv.innerText = str;
+        this.resultDiv.innerText = str;
     }
 
     onClick(cb) {
