@@ -1,7 +1,5 @@
 import { GoogleCharts } from 'google-charts';
 
-import "./chart.component.css";
-
 const template = document.createElement('template');
 template.innerHTML = `
     <div class="chart">
@@ -15,7 +13,12 @@ export class Chart extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
         this.type = this.getAttribute('type');
-        console.log(this.type);
+
+        this.width = this.getAttribute('width');
+        this.width = this.width ? this.width : 300;
+
+        this.height = this.getAttribute('height');
+        this.height = this.height ? this.height : 300;
     }
 
     async connectedCallback() {
@@ -42,6 +45,8 @@ export class Chart extends HTMLElement {
         var view = new GoogleCharts.api.visualization.DataView(data);
         var options = {
             title: this.response.title,
+            width: this.width,
+            height: this.height,
         };
 
         var chart = new chartType(this.shadowRoot.querySelector('.chart'));
